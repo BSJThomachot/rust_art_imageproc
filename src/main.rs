@@ -2,7 +2,8 @@ use rand::prelude::*;
 use std::path::Path;
 use image::{ImageBuffer,Rgb,RgbImage};
 use imageproc::rect::Rect;
-use imageproc::drawing::{draw_filled_rect_mut, draw_filled_circle_mut, draw_text_mut};
+use imageproc::point::Point;
+use imageproc::drawing::{draw_filled_rect_mut, draw_filled_circle_mut, draw_text_mut, draw_polygon_mut};
 use rusttype::{Font, Scale};
 
 // More examples straight from github
@@ -53,6 +54,17 @@ fn main() {
         y: 40.0,
     };
     draw_text_mut(&mut img, colour_pink, 400, 600, scale, &font, "RUST");
+
+    draw_polygon_mut(
+        &mut img,
+        &[
+            Point::new(380, 80),
+            Point::new(480, 80),
+            Point::new(580, 220),
+            Point::new(680, 220),
+        ],
+        colour_red,
+    );
 
 
     // save image
